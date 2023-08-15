@@ -1,0 +1,181 @@
+.search-container {
+  display: flex;
+  position: relative;
+  left: 900px;
+  top: 40px;
+  width: 300px;
+  gap: 10px;
+}
+.search {
+  height: 25px;
+  width: 200px;
+  border: 1px solid #9d9db5;
+  padding: 5px;
+}
+
+.search-btn {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+
+  position: relative;
+  top: 5px;
+}
+
+.products-container {
+  width: 1100px;
+  height: 100%;
+  margin: auto;
+  position: relative;
+  top: 120px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.card {
+  width: 300px;
+  padding-bottom: 0px;
+}
+
+.image {
+  width: 300px;
+  height: 200px;
+}
+
+.details {
+  width: 300px;
+  padding-left: 25px;
+  padding-top: 10px;
+}
+
+.title {
+  width: 300px;
+  font-size: 18px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.description {
+  width: 250px;
+  padding-top: 10px;
+  font-size: 12px;
+  color: #625f87;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.price-container {
+  width: 250px;
+  display: flex;
+  padding-top: 15px;
+  font-size: 17px;
+}
+
+.discount {
+  position: relative;
+  left: -100px;
+  top: -2px;
+  width: 350px;
+  border: 1px solid #f8814e;
+  border-radius: 25px;
+  padding: 5px;
+  background-color: #f8814e;
+
+  font-size: 12px;
+  color: white;
+  text-align: center;
+}
+
+hr {
+  position: relative;
+  top: 10px;
+  width: 260px;
+  border-left: none;
+}
+
+.card-footer {
+  position: relative;
+  top: 25px;
+  width: 260px;
+}
+
+.ratings {
+  width: 260px;
+  height: 50px;
+  display: flex;
+}
+
+.star {
+  width: 15px;
+  height: 15px;
+  position: relative;
+}
+
+.rating {
+  position: relative;
+  left: 10px;
+  top: 3px;
+  font-size: 10px;
+  color: #9d9db5;
+  width: 50px;
+  height: 20px;
+}
+
+.shop {
+  position: relative;
+  left: 30px;
+  top: 2px;
+  width: 15px;
+  height: 15px;
+}
+
+.stock {
+  position: relative;
+  left: 40px;
+  top: 3px;
+  font-size: 10px;
+  color: #9d9db5;
+  width: 50px;
+  height: 20px;
+}
+
+.add-btn {
+  height: 28px;
+  width: 60px;
+  position: relative;
+  left: 60px;
+  top: -5px;
+
+  border: 1px solid #0266ff;
+  border-radius: 10px;
+  background-color: #0266ff;
+}
+.add-to-cart {
+  width: 35px;
+  height: 15px;
+
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
+
+.load-more-btn {
+  position: relative;
+  top: 250px;
+  left: 520px;
+  width: 120px;
+  height: 40px;
+
+  padding: 5px;
+  color: white;
+  border: 1px solid #0266ff;
+  border-radius: 25px;
+  background-color: #0266ff;
+}

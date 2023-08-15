@@ -1,0 +1,32 @@
+.footer-container {
+  width: 100%;
+  height: 176px;
+  background-color: black;
+
+  position: relative;
+  top: 400px;
+}
+
+.socials-container {
+  width: 500px;
+  position: relative;
+  top: 60px;
+  left: 70px;
+}
+.follow-us {
+  width: 500px;
+  color: white;
+  font-size: 14px;
+}
+
+.right-container {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  left: 850px;
+  top: 40px;
+
+  width: 200px;
+  font-size: 12px;
+  color: #9d9db5;
+}
