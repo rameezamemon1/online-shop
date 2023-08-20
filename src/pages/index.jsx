@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+
 import "./css/Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,11 +13,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { add } from "../Redux/Cartslice";
 
 export default function Home() {
   const [data, setData] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [visible, setVisible] = useState(9);
+
+  const dispatch = useDispatch();
+
+  const addHandle = (item) => {
+    dispatch(add(item));
+  };
 
   useEffect(() => {
     async function dataList() {
@@ -33,13 +43,10 @@ export default function Home() {
         f.title.toLowerCase().includes(e.target.value)
       )
     );
-
-    console.log(e.target.value);
   };
 
   const loadMoreHandler = () => setVisible((prevValue) => prevValue + 6);
 
-  console.log(filtered);
   return (
     <>
       <div className="search-container">
@@ -60,17 +67,21 @@ export default function Home() {
           ? filtered.slice(0, visible).map((item, id) => {
               return (
                 <div key={id} className="card">
-                  <Image
-                    src={item.thumbnail}
-                    alt="image"
-                    className="image"
-                    width="300"
-                    height="200"
-                  />
+                  <Link href={`/ProductDetails/${item.id}`} className="link">
+                    <Image
+                      src={item.thumbnail}
+                      alt="image"
+                      className="image"
+                      width="300"
+                      height="200"
+                    />
+                  </Link>
                   <div className="details">
-                    <div className="title">
-                      <strong>{item.title}</strong>
-                    </div>
+                    <Link href={`/ProductDetails/${item.id}`} className="link">
+                      <div className="title">
+                        <strong>{item.title}</strong>
+                      </div>
+                    </Link>
                     <div className="description">{item.description}</div>
                     <div className="price-container">
                       <p className="price">
@@ -93,7 +104,10 @@ export default function Home() {
                           className="shop"
                         />
                         <p className="stock">{item.stock}</p>
-                        <button className="add-btn">
+                        <button
+                          className="add-btn"
+                          onClick={() => addHandle(item)}
+                        >
                           <FontAwesomeIcon
                             icon={faCartShopping}
                             style={{ color: "white" }}

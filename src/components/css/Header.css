@@ -18,8 +18,8 @@
   padding: 0px;
   position: relative;
   top: -55px;
-  left: 900px;
-  gap: 40px;
+  left: 830px;
+  gap: 20px;
 }
 
 .sign-in-btn {
@@ -39,12 +39,21 @@
 }
 
 .cart {
-  width: 25px;
+  width: 5px;
   height: 25px;
+  background-color: #192140;
+  border: none;
 
   position: relative;
-  top: 12px;
+  left: 20px;
+  top: 13px;
   cursor: pointer;
+  color: #9d9db5;
+  font-size: 14px;
+}
+
+.link {
+  width: 80px;
 }
 
 .currency {
@@ -61,4 +70,62 @@
 
 .currency:hover {
   color: #0266ff;
+}
+
+@media only screen and (max-width: 375px) {
+  .header-container {
+    width: 375px;
+  }
+
+  .logo {
+    position: relative;
+    left: 20px;
+  }
+
+  .header-left-container {
+    width: 30px;
+    position: relative;
+    top: -55px;
+    left: 250px;
+  }
+
+  .cart {
+    width: 80px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid #0266ff;
+    border-radius: 25px;
+    padding: 5px 10px;
+
+    position: absolute;
+    left: -230px;
+    top: 90px;
+    cursor: pointer;
+    color: #0266ff;
+    font-size: 14px;
+  }
+
+  .cart:hover {
+    background-color: #0266ff;
+    color: white;
+  }
+
+  button.sign-in-btn {
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid #0266ff;
+    border-radius: 25px;
+    padding: 10px 10px;
+    color: #0266ff;
+
+    position: absolute;
+    top: 90px;
+    left: 0px;
+  }
+
+  .currency {
+    position: relative;
+    left: 30px;
+  }
 }

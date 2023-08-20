@@ -1,21 +1,23 @@
+"use client";
+
 import "./css/Header.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 import Image from "next/image";
 import Logo from "../Image/Best Shop.png";
+import { useSelector } from "react-redux";
 
 function Header() {
+  const item = useSelector((state) => state.cart);
+
   return (
     <div className="header-container">
       <Image src={Logo} alt="logo" className="logo"></Image>
       <div className="header-left-container">
         <button className="sign-in-btn">Sign In</button>
-        <FontAwesomeIcon
-          icon={faCartShopping}
-          style={{ color: "#9d9db5" }}
-          className="cart"
-        />
+        <Link href={"/cart"} className="link">
+          <button className="cart">Cart:{item.length}</button>
+        </Link>
         <select className="currency" name="currency">
           <option value="USD">USD</option>
           <option value="EUR">EUR</option>

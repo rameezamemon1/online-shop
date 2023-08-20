@@ -1,0 +1,300 @@
+.cart-header {
+  position: relative;
+  top: 70px;
+  left: 70px;
+  width: 200px;
+
+  font-size: 30px;
+}
+
+.cart-counter {
+  position: relative;
+  top: 100px;
+  left: 70px;
+
+  color: #625f87;
+  font-size: 18px;
+
+  width: 300px;
+  margin: 0px;
+}
+
+.cart-container {
+  width: 1000px;
+  position: relative;
+  top: 150px;
+  left: 100px;
+}
+
+.cart-card {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.remove-btn {
+  height: 25px;
+  width: 25px;
+  border: 1px solid #0266ff;
+  border-radius: 25px;
+
+  position: relative;
+  top: 50px;
+  margin-right: 40px;
+
+  cursor: pointer;
+}
+
+.cart-details {
+  position: relative;
+  top: 30px;
+  left: 250px;
+}
+
+.cart-title {
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+
+.cart-price {
+  position: relative;
+  left: 10px;
+}
+
+.brand-category {
+  display: flex;
+  gap: 20px;
+
+  position: relative;
+  left: 10px;
+  top: 10px;
+
+  color: #9d9db5;
+}
+
+.cart-brand,
+.cart-category {
+  border: 1px solid #9d9db5;
+  border-radius: 25px;
+  padding: 5px 10px;
+
+  font-size: 12px;
+}
+
+a.link:link {
+  text-decoration: none;
+  color: black;
+}
+
+a.link:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a.link:active {
+  text-decoration: none;
+  color: black;
+}
+
+.quantity {
+  display: flex;
+  position: relative;
+  top: -50px;
+  left: 450px;
+}
+
+.increase,
+.decrease {
+  border: none;
+  width: 30px;
+  height: 30px;
+
+  font-size: 25px;
+  color: #0266ff;
+  cursor: pointer;
+}
+
+.counter {
+  width: 30px;
+  position: relative;
+  top: 5px;
+  left: 10px;
+
+  font-size: 18px;
+}
+
+.total {
+  position: relative;
+  top: 50px;
+  left: -30px;
+
+  font-size: 25px;
+}
+
+.btns-container {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  top: 250px;
+  left: 500px;
+  width: 600px;
+}
+
+.continue-shopping,
+.place-order {
+  padding: 10px 20px;
+  margin-left: 15px;
+
+  border: 1px solid #0266ff;
+  border-radius: 25px;
+  color: #0266ff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.continue-shopping:hover,
+.place-order:hover {
+  color: white;
+  background-color: #0266ff;
+}
+
+.sign-in-notice {
+  position: relative;
+  top: 10px;
+  left: 10px;
+
+  color: #625f87;
+}
+
+@media only screen and (max-width: 375px) {
+  .cart-header {
+    position: relative;
+    top: 120px;
+    left: 30px;
+    width: 150px;
+
+    font-size: 25px;
+  }
+
+  .cart-counter {
+    position: relative;
+    top: 140px;
+    left: 30px;
+    width: 180px;
+
+    color: #625f87;
+    font-size: 16px;
+  }
+
+  .cart-container {
+    width: 330px;
+    position: relative;
+    top: 200px;
+    left: 20px;
+  }
+
+  .cart-card {
+    display: flex;
+    padding-bottom: 20px;
+  }
+
+  .remove-btn {
+    height: 20px;
+    width: 20px;
+
+    position: relative;
+    top: 50px;
+    margin-right: 10px;
+  }
+
+  .cart-image {
+    width: 150px;
+    height: 100px;
+  }
+
+  .cart-details {
+    position: relative;
+    top: 10px;
+    left: 80px;
+  }
+
+  .cart-title {
+    font-size: 16px;
+  }
+
+  .cart-price {
+    position: relative;
+    left: 100px;
+    width: 50px;
+  }
+
+  .brand-category {
+    display: none;
+  }
+
+  a.link:link {
+    text-decoration: none;
+    color: black;
+  }
+
+  a.link:visited {
+    text-decoration: none;
+    color: black;
+  }
+
+  a.link:active {
+    text-decoration: none;
+    color: black;
+  }
+
+  .quantity {
+    display: flex;
+    position: relative;
+    top: 10px;
+    left: 00px;
+  }
+
+  .increase,
+  .decrease {
+    border: none;
+    width: 20px;
+    height: 25px;
+
+    font-size: 20px;
+  }
+
+  .counter {
+    width: 25px;
+    position: relative;
+    top: 3px;
+    left: 10px;
+
+    font-size: 16px;
+  }
+
+  .total {
+    position: relative;
+    top: 50px;
+    left: 0px;
+
+    font-size: 20px;
+  }
+
+  .btns-container {
+    width: 350px;
+    position: relative;
+    top: 300px;
+    left: 0px;
+  }
+
+  .continue-shopping,
+  .place-order {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    width: 330px;
+    font-size: 14px;
+  }
+
+  .sign-in-notice {
+    display: none;
+  }
+}
