@@ -1,3 +1,10 @@
+@import "../css/Cart.css";
+@import "../css/Home.css";
+@import "../../components/css/Footer.css";
+@import "../../components/css/Header.css";
+@import "../ProductDetails//ProductDetails.css";
+
+
 * {
   margin: 0px;
   padding: 0px;

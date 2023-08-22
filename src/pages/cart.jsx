@@ -1,47 +1,58 @@
 "use-client";
 
-import "./css/Cart.css";
+// import "./css/Cart.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from 'next/router';
 
-import { remove } from "../Redux/Cartslice";
+import { remove, increaseQuantity, decreaseQuantity } from "../Redux/Cartslice";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
 
 function Cart() {
+    const router = useRouter();
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
   const cartItems = useSelector((state) => state.cart);
-
-  const [quantity, setQuantity] = useState(1);
-
+  console.log(auth)
   const removeHandle = (id) => {
     dispatch(remove(id));
   };
 
-  const decreaseHandle = () => {
-    if (quantity > 1) {
-      setQuantity((prevCount) => prevCount - 1);
-    }
+  const decreaseHandle = (id) => {
+    // if (quantity > 1) {
+    dispatch(decreaseQuantity(id));
+    // setQuantity((prevCount) => prevCount - 1);
+    // }
   };
 
-  const increaseHandle = () => {
-    if (quantity < 20) {
-      setQuantity((prevCount) => prevCount + 1);
+  const increaseHandle = (id) => {
+    dispatch(increaseQuantity(id));
+    // if (quantity < 20) {
+    //   setQuantity((prevCount) => prevCount + 1);
+    // }
+  };
+  const totalCartQuantity = cartItems?.cartItems?.reduce(
+    (total, currentItem) => total + currentItem.cartQuantity,
+    0
+  );
+  const placeOrderFunction = () => {
+    if(auth?.isLoggedIn===false){
+      router.push('/signin');
+
     }
   };
-
   return (
     <>
       <div className="cart-header">
         <strong>Shopping Bag</strong>
       </div>
       <div className="cart-counter">
-        {cartItems.length} items in the shopping bag
+        {totalCartQuantity} items in the shopping bag
       </div>
       <div className="cart-container">
-        {cartItems.map((item, id) => (
+        {cartItems?.cartItems?.map((item, id) => (
           <div key={id} className="cart-card">
             <button
               className="remove-btn"
@@ -72,11 +83,17 @@ function Cart() {
                 <div className="cart-category">{item.category}</div>
               </div>
               <div className="quantity">
-                <button className="decrease" onClick={decreaseHandle}>
+                <button
+                  className="decrease"
+                  onClick={() => decreaseHandle(item.id)}
+                >
                   -
                 </button>
-                <p className="counter">{quantity}</p>
-                <button className="increase" onClick={increaseHandle}>
+                <p className="counter">{item.cartQuantity}</p>
+                <button
+                  className="increase"
+                  onClick={() => increaseHandle(item.id)}
+                >
                   +
                 </button>
               </div>
@@ -92,7 +109,9 @@ function Cart() {
           <Link href="/" className="link">
             <button className="continue-shopping">Continue Shopping</button>
           </Link>
-          <button className="place-order">Place Order</button>
+          <button className="place-order" onClick={placeOrderFunction}>
+            Place Order
+          </button>
         </div>
         <div className="sign-in-notice">To place an order, Sign in.</div>
       </div>

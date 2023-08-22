@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import "./css/Home.css";
+// import "./css/Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,

@@ -1,4 +1,4 @@
-import "./css/Footer.css";
+// import "./css/Footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,

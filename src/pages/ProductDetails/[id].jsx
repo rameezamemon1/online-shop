@@ -1,7 +1,7 @@
 "use client";
 
-import "./ProductDetails.css";
-import "../../components/css/Header.css";
+// import "./ProductDetails.css";
+// import "../../components/css/Header.css";
 
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
