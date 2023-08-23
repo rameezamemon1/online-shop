@@ -1,32 +1,18 @@
-'use client'
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
-import Link from 'next/link';
-import { useUser } from '@auth0/nextjs-auth0/client';
+function IndexPage() {
+  const { data, status } = useSession();
+  const router = useRouter();
 
-function SignIn() {
-  const { user, error, isLoading } = useUser();
-
+  if (status === "loading") return <h1> loading... please wait</h1>;
+  if (status === "authenticated") {
+    router.push("/");
+  }
   return (
     <div>
-      <h1>Login Page</h1>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          {user ? (
-            <>
-              <p>Welcome, {user.name}!</p>
-              <Link href="/api/auth/logout">
-                <a>Logout</a>
-              </Link>
-            </>
-          ) : (
-            <a href="/api/auth/login">Login with Google</a>
-          )}
-        </>
-      )}
+      <button onClick={() => signIn("google")}>sign in with gooogle</button>
     </div>
   );
 }
-
-export default SignIn
+export default IndexPage;

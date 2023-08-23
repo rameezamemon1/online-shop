@@ -1,11 +1,13 @@
 "use client";
 
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItems: [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
+  selectedCurrency: "USD",
+  selectedSymbol: "$",
 };
 
 const cartSlice = createSlice({
@@ -22,9 +24,13 @@ const cartSlice = createSlice({
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
       }
-      // return [...state, action.payload];
     },
-
+    setSelectedCurrency(state, action) {
+      state.selectedCurrency = action.payload;
+    },
+    setSelectedSymbol(state, action) {
+      state.selectedSymbol = action.payload;
+    },
     remove(state, action) {
       const itemIdToRemove = action.payload;
       state.cartItems = state.cartItems.filter(
@@ -77,5 +83,7 @@ export const {
   getTotal,
   decreaseQuantity,
   increaseQuantity,
+  setSelectedCurrency,
+  setSelectedSymbol,
 } = cartSlice.actions;
 export default cartSlice.reducer;

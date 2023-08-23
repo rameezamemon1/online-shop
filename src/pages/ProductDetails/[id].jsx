@@ -13,10 +13,13 @@ import Link from "next/link";
 
 import { useDispatch } from "react-redux";
 import { add } from "../../Redux/Cartslice";
+import { useSelector } from "react-redux";
 
 function ProductDetail() {
   const [data, setData] = useState([]);
-
+  const { selectedSymbol, selectedCurrency } = useSelector(
+    (state) => state.cart
+  );
   const router = useRouter();
   const { id } = router.query;
 
@@ -29,13 +32,26 @@ function ProductDetail() {
     }
     dataList();
   }, [router]);
+  const [rates, setRates] = useState({});
 
-  console.log(data);
   const dispatch = useDispatch();
 
   const addHandle = () => {
     dispatch(add(data));
   };
+  const calculatePrice = (value) => {
+    return Math.floor(value * rates[selectedCurrency]);
+  };
+  useEffect(() => {
+    async function dataList() {
+      const resRates = await fetch(
+        "http://data.fixer.io/api/latest?access_key=44aac3e52f083b8cc52fce3d655a073f"
+      );
+      const dataRates = await resRates.json();
+      setRates(dataRates?.rates);
+    }
+    dataList();
+  }, []);
   return (
     <>
       <Link href="/" className="link">
@@ -66,7 +82,9 @@ function ProductDetail() {
           </div>
           <div className="p-price-container">
             <div className="p-price">
-              <strong>{`$${data?.price}`}</strong>
+              <strong>{`${selectedSymbol}${calculatePrice(
+                data.price
+              )}`}</strong>
             </div>
             <div className="p-discount">{`-${data?.discountPercentage}`}</div>
           </div>

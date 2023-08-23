@@ -1,21 +1,25 @@
 "use-client";
-
-// import "./css/Cart.css";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 import { remove, increaseQuantity, decreaseQuantity } from "../Redux/Cartslice";
 import { useDispatch, useSelector } from "react-redux";
 
 function Cart() {
-    const router = useRouter();
+  const router = useRouter();
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
+  const [rates, setRates] = useState({});
   const cartItems = useSelector((state) => state.cart);
-  console.log(auth)
+  const { status } = useSession();
+  const { selectedCurrency, selectedSymbol } = useSelector(
+    (state) => state.cart
+  );
+
   const removeHandle = (id) => {
     dispatch(remove(id));
   };
@@ -38,11 +42,26 @@ function Cart() {
     0
   );
   const placeOrderFunction = () => {
-    if(auth?.isLoggedIn===false){
-      router.push('/signin');
-
+    if (status == "unauthenticated") {
+      router.push("/signin");
+    } else {
+      router.push("/success");
     }
   };
+  const calculatePrice = (value) => {
+    return Math.floor(value * rates[selectedCurrency]);
+  };
+  useEffect(() => {
+    async function dataList() {
+      const resRates = await fetch(
+        "http://data.fixer.io/api/latest?access_key=44aac3e52f083b8cc52fce3d655a073f"
+      );
+      const dataRates = await resRates.json();
+      setRates(dataRates?.rates);
+    }
+    dataList();
+  }, []);
+
   return (
     <>
       <div className="cart-header">
@@ -76,7 +95,9 @@ function Cart() {
                 </div>
               </Link>
               <div className="cart-price">
-                <strong>{`$${item.price}`}</strong>
+                <strong>{`${selectedSymbol}${calculatePrice(
+                  item.price
+                )}`}</strong>
               </div>
               <div className="brand-category">
                 <div className="cart-brand">{item.brand}</div>

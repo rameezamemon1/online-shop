@@ -15,12 +15,15 @@ import {
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { add } from "../Redux/Cartslice";
+import { useSelector } from "react-redux";
 
 export default function Home() {
   const [data, setData] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [visible, setVisible] = useState(9);
-
+  const { selectedCurrency, selectedSymbol } = useSelector(
+    (state) => state.cart
+  );
   const dispatch = useDispatch();
 
   const addHandle = (item) => {
@@ -29,13 +32,22 @@ export default function Home() {
 
   useEffect(() => {
     async function dataList() {
+      const resRates = await fetch(
+        "http://data.fixer.io/api/latest?access_key=44aac3e52f083b8cc52fce3d655a073f"
+      );
+      const dataRates = await resRates.json();
       const res = await fetch("https://dummyjson.com/products");
       const data = await res.json();
-      setData(data);
-      setFiltered(data.products);
+      const convertedProducts = data?.products?.map((product) => {
+        const convertedPrice =
+          product.price * dataRates.rates[selectedCurrency];
+        return { ...product, convertedPrice };
+      });
+      setData(convertedProducts);
+      setFiltered(convertedProducts);
     }
     dataList();
-  }, []);
+  }, [selectedCurrency]);
 
   const filterHandler = (e) => {
     setFiltered(
@@ -85,7 +97,9 @@ export default function Home() {
                     <div className="description">{item.description}</div>
                     <div className="price-container">
                       <p className="price">
-                        <strong>{`$${item.price}`}</strong>
+                        <strong>{`${selectedSymbol}${Math.floor(
+                          item.convertedPrice
+                        )}`}</strong>
                       </p>
                       <p className="discount">{`-${item.discountPercentage}`}</p>
                     </div>
