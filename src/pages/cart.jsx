@@ -5,7 +5,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 import { remove, increaseQuantity, decreaseQuantity } from "../Redux/Cartslice";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +23,8 @@ function Cart() {
   const removeHandle = (id) => {
     dispatch(remove(id));
   };
+
+  console.log(cartItems);
 
   const decreaseHandle = (id) => {
     // if (quantity > 1) {
@@ -50,6 +52,15 @@ function Cart() {
   };
   const calculatePrice = (value) => {
     return Math.floor(value * rates[selectedCurrency]);
+  };
+
+  const calculateTotal = () => {
+    let totalCartPrice = 0;
+    cartItems?.cartItems?.forEach((item) => {
+      const convertedPrice = item.price * rates[selectedCurrency];
+      totalCartPrice += convertedPrice;
+    });
+    return Math.floor(totalCartPrice);
   };
   useEffect(() => {
     async function dataList() {
@@ -122,7 +133,7 @@ function Cart() {
           </div>
         ))}
         <div className="total">
-          <strong>Total:</strong>
+          <strong>Total:{`${selectedSymbol}${calculateTotal()}`}</strong>
         </div>
       </div>
       <div className="btns-container">
